@@ -4,7 +4,7 @@
 #include "studVector.hpp"
 #include "student.hpp"
 
-TEST(stV, CorrectNullFieldT) {
+TEST(stV, CorrectNullFieldType) {
   Student s{json::parse(R"({
       "name": "Ivanov Petr",
       "group": "1",
@@ -16,6 +16,8 @@ TEST(stV, CorrectNullFieldT) {
   ASSERT_DOUBLE_EQ(s.Avg, 4.25);
   ASSERT_FALSE(s.Debt.has_value());
 }
+
+
 
 TEST(stV, CorrectArFieldT) {
   Student s{json::parse(R"({
@@ -36,6 +38,27 @@ TEST(stV, CorrectArFieldT) {
 TEST(stV, CorrectException) {
   ASSERT_THROW(Student{json::parse(R"({})")}, std::invalid_argument);
 }
+TEST (stVect, Path){
+  ASSERT_THROW(studVector("f"), std::runtime_error);
+}
+
+TEST (stVect, NoPath){
+  ASSERT_THROW(studVector(""), std::runtime_error);
+}
+
+//TEST(stVect, NotArray) {
+//  Student s{json::parse(R"({
+//      "name": "Pertov Nikita",
+//      "group": "IU8-31",
+//      "avg": 3.33,
+//      "debt": [
+//        "C++",
+//        "Linux",
+//        "Network"
+//      ]
+//    })")};
+//}
+
 TEST(stV, BasicParse) {
   Student s(json::parse(R"({
       "name": "Sidorov Ivan",
