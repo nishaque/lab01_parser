@@ -65,14 +65,21 @@ void studVector::write() {
     std::cout.precision(2);
     std::cout << std::fixed << i.Avg;
     std::cout << "| ";
-    std::cout.width(12);
-    std::cout.fill(' ');
     if (i.Debt.type() == typeid(b)) {
+      std::cout.width(12);
+      std::cout.fill(' ');
       std::cout << std::any_cast<std::string>(i.Debt);
-    } else if (i.Debt.type() == typeid(9)) {
-      if (!i.Debt.has_value()) {
-        std::cout << "null";
-      }
+    } else if (!i.Debt.has_value()) {
+      std::cout.width(12);
+      std::cout.fill(' ');
+      std::cout << "null";
+    } else {
+      std::cout.width(2);
+      std::cout.fill(' ');
+      std::cout << std::any_cast<std::vector<std::string>>(i.Debt).size();
+      std::cout.width(10);
+      std::cout.fill(' ');
+      std::cout << "items";
     }
     std::cout << '|' << '\n';
   }

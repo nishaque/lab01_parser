@@ -59,3 +59,40 @@ TEST(stV, BasicParse) {
   ASSERT_DOUBLE_EQ(s.Avg, 4.00);
   ASSERT_EQ(std::any_cast<std::string>(s.Debt), "C++");
 }
+
+TEST(stVect, Vector) {
+  json data = (json::parse(R"(
+      {
+          "items": [
+      {
+        "name": "Ivanov Petr",
+            "group": "1",
+            "avg": 4.25,
+            "debt": null
+      },
+      {
+        "name": "Sidorov Ivan",
+            "group": 31,
+            "avg": 4,
+            "debt": "C++"
+      },
+      {
+        "name": "Pertov Nikita",
+            "group": "IU8-31",
+            "avg": 3.33,
+            "debt": [
+        "C++",
+            "Linux",
+            "Network"
+        ]
+      }
+      ],
+      "_meta": {
+        "count": 3
+      }
+      }
+      )"));
+  studVector s(data);
+  // std::cout<<s.st[1].Name;
+  ASSERT_EQ(s.st[1].Name, "Sidorov Ivan");
+}
