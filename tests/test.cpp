@@ -17,8 +17,6 @@ TEST(stV, CorrectNullFieldType) {
   ASSERT_FALSE(s.Debt.has_value());
 }
 
-
-
 TEST(stV, CorrectArFieldT) {
   Student s{json::parse(R"({
       "name": "Pertov Nikita",
@@ -38,26 +36,16 @@ TEST(stV, CorrectArFieldT) {
 TEST(stV, CorrectException) {
   ASSERT_THROW(Student{json::parse(R"({})")}, std::invalid_argument);
 }
-TEST (stVect, Path){
-  ASSERT_THROW(studVector("f"), std::runtime_error);
-}
+TEST(stVect, Path) { ASSERT_THROW(studVector("f"), std::runtime_error); }
 
-TEST (stVect, NoPath){
-  ASSERT_THROW(studVector(""), std::runtime_error);
-}
+TEST(stVect, NoPath) { ASSERT_THROW(studVector(""), std::runtime_error); }
 
-//TEST(stVect, NotArray) {
-//  Student s{json::parse(R"({
-//      "name": "Pertov Nikita",
-//      "group": "IU8-31",
-//      "avg": 3.33,
-//      "debt": [
-//        "C++",
-//        "Linux",
-//        "Network"
-//      ]
-//    })")};
-//}
+TEST(stVect, NotArray) {
+  json data = json::parse(R"({
+      "items": "Pertov Nikita"
+    })");
+  ASSERT_THROW(studVector s(data), std::runtime_error);
+}
 
 TEST(stV, BasicParse) {
   Student s(json::parse(R"({

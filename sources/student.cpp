@@ -37,4 +37,3 @@ Student::Student(const json &j) {
     Debt = a;
   }
 }
-// void Student::Table(){
