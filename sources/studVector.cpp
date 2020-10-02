@@ -15,7 +15,7 @@ studVector::studVector(const std::string& path) {
   if (!file) {
     throw std::runtime_error{"unable to open json:  " + path};
   }
-  json data="";
+  json data = "";
   file >> data;
   fromJsonAr(data);
 }

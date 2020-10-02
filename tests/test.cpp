@@ -95,7 +95,7 @@ TEST(stVect, Vector) {
   studVector s(data);
   ASSERT_EQ(s.st[1].Name, "Sidorov Ivan");
 }
- TEST(stVect, IncorrectNum) {
+TEST(stVect, IncorrectNum) {
   json data = (json::parse(R"(
       {
           "items": [
@@ -129,6 +129,7 @@ TEST(stVect, Vector) {
       )"));
   ASSERT_THROW(studVector s(data), std::runtime_error);
 }
-//TEST(stVect, correctInputFile) {
-//  ASSERT_THROW(studVector s("lab-01-parser/sources/json"), std::runtime_error);
+// TEST(stVect, correctInputFile) {
+//  ASSERT_THROW(studVector s("lab-01-parser/sources/json"),
+//  std::runtime_error);
 //}
